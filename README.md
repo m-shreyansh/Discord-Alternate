@@ -1,5 +1,5 @@
 # Discord-Alternate
-CP Solution Discussion is a website where people can view hint, solution idea and even solution code of various competitive programming related questions. They can comment to further clearify their doubts regarding the solutions.
+Discord-Alternate is an open source place where people can create their servers with friends or family and chat or talk with them. Further you can have multiple audio and chat channels for different contexts.
 
 The first thing to do is to clone the repository:
 
