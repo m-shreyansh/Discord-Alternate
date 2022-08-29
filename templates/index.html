@@ -1,0 +1,151 @@
+{% extends 'base.html' %}
+{% block head %}
+{% endblock %}
+{% block body %}
+        <div class="t-bar">
+
+        </div>
+        <div class="sidebar">
+            <div class="logo_content">
+                <div class="logo">
+                    <i class='bx bx-shape-triangle' ></i>
+                    <div class="logo_name">TRiPOD</div>
+                </div>
+                <i class='bx bx-menu' id = 'btn'></i>
+            </div>
+            <ul class="nav_list">
+                {% for server in list_of_servers %}
+                <li>
+                    <a href="#" id="{{server._id}}" onclick="open_server(this)" class="sidebarList">                        
+                        <span id="server_newmessage_{{server._id}}" class="newmessage"><i class='bx bx-message-rounded-dots' ></i></span>
+                        <i class='bx bx-grid-alt' ></i>
+                        <span class="links_name" >{{server.name}}</span>
+                    </a>
+                    <span class="tooltip">{{server.name}}</span>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div class="home_content">
+            <div class="main_block">
+            {% for server in list_of_servers %} 
+                <div id="all_data_for_{{server._id}}" class="server_data" data-unreadChannels="0">
+                    <div class="friends_block" id="call_place">
+                    <div id="textchannels">TEXT CHANNELS</div>
+                    {% for key, value in server.text_channels.items() %}
+                    <div class="channels channelshover" id="{{value._id}}" onclick="click_text_channel(this)">
+                            <span id="channel_newmessage_{{value._id}}" class="newmessage"><i class='bx bx-message-rounded-dots' ></i></span>
+                         <i class='bx bx-hash'></i> {{value.name}}
+                    </div>
+                    {% endfor %}
+                    <div id="voicechannels">VOICE CHANNELS</div>
+                    {% for key, value in server.voice_channels.items() %}
+                    <div class="channels channelshover" id="{{key}}" onclick="channel_click_function(this)">
+                        <i class='bx bx-volume-full' ></i>  {{key}}
+                            <ul id="{{key}}_list"></ul>
+                    </div>
+                    {% endfor %}
+                    <div id="mute">
+                        <i class='bx bxs-microphone bx-md' ></i>
+                    </div>
+                    <div id="unmute">
+                        <i class='bx bxs-microphone-off bx-md' ></i>
+                    </div>
+                    <div id="endcall" onclick="end_call_click_function(this)"><i class='bx bxs-phone-off bx-md'></i></div>
+                    <!-- <button onclick="test_function(this)">test</button> -->
+
+                    </div>
+                </div>
+                {% endfor %}    
+                <div class="message-and-button">
+                    <div class="messages-div" id="messages-div">
+                        <ul id="messages">
+                        </ul>
+                    </div>
+                    <div id="scrollButton"><i class='bx bx-caret-down-circle bx-md' onclick="scroll_to_bottom_of_chat()"></i></div>
+            <div id="type-message"> <textarea id="textbox-message" ></textarea></div>
+                </div>
+            <div id="jitsi-meet-conf-container"></div>
+            </div>
+        </div>
+        <div class="rbar">
+            <div class="music">
+                <div class="player">
+                    <div class="row">
+                        <div class = "image">
+                            <img src="{{ url_for('static', filename='/images/abc.png') }}" alt=""">
+                        </div>
+                        <div class="texts">
+                            <div class="name">
+                            <p class="song-name">Clash.feat(Dave)</p>
+                            </div>
+                            <div class="artist">
+                                <p class = 'artist-name'>Dave, Stromzy</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="progress-area">
+                        <div class="progress-bar">
+                            <div class="main-prog">
+
+                            </div>
+                        </div>
+                        <div class="timer">
+                            <span class = "current">0:20</span>
+                            <span class = "current">3:40</span>
+                        </div>
+                    </div>
+                    <div class="controls">
+                        <i class='bx bx-skip-previous' id = 'prev'></i>
+                        <i class='bx bx-play-circle' id = 'play-pause'></i>
+                        <i class='bx bx-skip-next' id = 'next' ></i>
+                    </div>
+                </div>
+            </div>
+            <div class="profile">
+
+            </div>
+        </div>
+        <script>
+            let btn = document.querySelector("#btn");
+            let sidebar = document.querySelector(".sidebar");
+            
+            btn.onclick = function(){
+                sidebar.classList.toggle("active");
+            };
+
+            BindEvent()
+            const text_box = document.getElementById('textbox-message')
+            text_box.addEventListener('keydown', function (e) {
+                // console.log(this.offsetHeight)
+                // console.log(this.scrollHeight)
+                const keyCode = e.which || e.keyCode;
+                    // 13 represents the Enter key
+                if (keyCode === 13 && !e.shiftKey) {
+                        // Don't generate a new line
+                   e.preventDefault();
+                   send_new_message($('#textbox-message').val())
+                   $('#textbox-message').val('')
+                   this.style.height=30;
+                }
+                else if(this.offsetHeight<=this.scrollHeight&&this.scrollHeight<=75){this.style.height = this.scrollHeight}
+                else if(this.offsetHeight>this.scrollHeight&&this.offsetHeight==75){this.style.height=60}
+                else if(this.offsetHeight>this.scrollHeight&&this.offsetHeight==60){this.style.height=45}
+                else if(this.offsetHeight>this.scrollHeight&&this.offsetHeight==45){this.style.height=30}
+
+
+            // if(this.style.height<this.offsetHeight){
+            //     console.log("yes");
+            // }
+            // else{
+            //     console.log("no")
+            // }
+            // if(this.scrollHeight<75){this.style.height = this.scrollHeight ; }
+            // else {this.style.height = 75+'px'}
+            // if(this.offsetHeight<30){this.style.height=30+'px';}
+            // console.log(this.offsetHeight)
+            }, false);
+            document.getElementById('messages-div').scrollIntoView({ behavior: 'smooth', block: 'end' });
+
+        </script>
+{% endblock %}

@@ -1,0 +1,594 @@
+@import url('https://fonts.googleapis.com/css2?gamily=Poppins:wght@200;300;400;500;600;700&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+*::before, *::after{
+    padding: 0;
+    margin: 0;
+}
+
+
+body{
+    position: relative;
+    min-height: 100vh;
+    width: 100%;
+    overflow: hidden;
+    background-color: #161922;
+    border-radius: 20px;
+}
+
+
+
+.t-bar{
+    background: #161922; 
+    width: 100%; 
+    height: 20px;
+    -webkit-app-region: drag;
+}
+
+
+
+
+
+.sidebar{
+    position: fixed;
+    top: 20px;
+    left: 0;
+    height: 97.1%;
+    width: 78px;
+    background-color: #242638;
+    padding: 6px 5px;
+    transition: all 0.5s ease;
+    border-bottom-right-radius: 20px;
+    border-top-right-radius: 20px;
+}
+
+.sidebar.active{
+    width: 260px;
+}
+
+
+.sidebar .logo_content .logo{
+    color: #B7B7EB;
+    display: flex;
+    height: 50px;
+    width: 100%;
+    align-items: center;
+    pointer-events: none;
+    padding-left: 12px;
+    /* right: 100px; */
+}
+
+
+.logo_content .logo i{
+    font-size: 0px;
+    margin-right: 66px;
+    transition: all 0.3s ease-in-out;
+}
+
+.sidebar.active .logo_content .logo i{
+    pointer-events: auto;
+    font-size: 38px;
+    margin-right: 25px;
+}
+
+.logo_content .logo .logo_name{
+    font-size: 30px;
+    right: 50px;
+    font-weight: 400;
+}
+
+.sidebar #btn{
+    position: absolute;
+    color:#B7B7EB;
+    left: 50%;
+    top: 6px;
+    font-size: 20px;
+    height: 50px;
+    width: 62px;
+    text-align: center;
+    line-height: 50px;
+    transform: translateX(-30px);
+    transition: 0.2s;
+}
+
+.sidebar.active #btn{
+    transition: 0.2s;
+    left: 90%;
+}
+
+.sidebar ul{
+    margin-top: 20px;
+}
+
+.sidebar ul li{
+    list-style: none;
+    height: 60px;
+    position: relative;
+    width: 100%;
+    margin: 6 0px;
+}
+
+.sidebar ul li .tooltip{
+    position: absolute;
+    transform: translateY(-50%);
+    left: 122px;
+    top: 50%;
+    border-radius: 20px;
+    line-height: 35px;
+    height: 35px;
+    width: 112px;
+    background: #B7B7EB;
+    text-align: center;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+    transition: 0s;
+    opacity: 0;
+    pointer-events: none;
+    display: block;
+}
+
+.sidebar.active ul li .tooltip{
+    display: none;
+}
+
+.sidebar ul li:hover .tooltip{
+    top: 50%;
+    transition: all 0.5s ease;
+    opacity: 1;
+}
+
+.sidebar ul li a{
+    color: #B7B7EB;
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    border-radius: 12px;
+}
+
+.sidebarList:hover{
+    background: #B7B7EB;
+    color:#2C2E58
+}
+
+
+
+.sidebar ul li a i{
+    height: 60px;
+    min-width: 70px;
+    border-radius: 12px;
+    line-height: 60px;    
+    text-align: center;
+    transition: min-width 0.5s ease;
+    font-size: 28px;
+}
+
+.sidebar .links_name{
+    padding-left: 20px;
+    font-weight: 700;
+    transition: padding-left 0.5s ease-in-out; 
+}
+
+.sidebar.active .links_name{
+    padding-left: 0px;
+}
+
+.sidebar.active ul li a i{
+    min-width: 80px;
+    transition: min-width 0.5s ease;
+}
+
+
+
+
+
+
+
+
+
+.home_content{
+    position: absolute;
+    height: 97%;
+    width: calc(100% - 78px - 260px);
+    left: 78px;
+    right: 260px;
+    background: #161922;
+    transition: 0.5s ease;
+}
+
+.sidebar.active ~ .home_content{
+    width: calc(100% - 260px - 260px);
+    left: 260px;
+}
+
+
+.home_content .main_block{
+    /* padding: 6px 12px; */
+    border-radius: 30px;
+    background-color: #242638;
+    height: 100%;
+    border: 10px solid #161922;
+}
+
+
+
+
+
+
+
+
+.main_block {
+    display: flex;
+}
+
+
+
+
+
+
+
+
+
+
+
+.rbar {
+    position: fixed;
+    display: flex;
+    top: 20px;
+    right: 0;
+    height: 97%;
+    width: 260px;
+    background-color: #242638;
+    border-bottom-left-radius: 30px;
+    border-top-left-radius: 30px;
+}
+
+
+.rbar .profile {
+    position: fixed;
+    bottom: 0;
+    background: #2C2E58;
+    height: 130px;
+    width: inherit;
+    border: 10px solid #242638;
+    border-top: 5px solid #242638;
+    border-radius: 30px;
+}
+
+
+.rbar .music{
+    position: relative;
+    top: 0;
+    height: auto;
+    margin-bottom: 125px;
+    background: #B7B7EB;
+    width: inherit;
+    border-radius: 30px;
+    border: 10px solid #242638;
+    display: flex;
+}
+
+.music .row{
+    display: flex;
+}
+
+.music .player{
+    height: 170px;
+    margin: 10;
+    background-color: #2C2E58;
+    width: 100%;
+    border-radius: 20px;
+}
+
+.player .image{
+    height: 55px;
+    width: 55px;
+    overflow: hidden;
+    border-radius: 10px;
+    margin: 10px;
+}
+
+.image img{
+    height: inherit;
+    width: inherit;
+    object-fit: cover;
+}
+
+.texts {
+    height: 40px;
+    width: 130px;
+    margin-top: 18px;
+    margin-left: 2px;
+    color: #B7B7EB;    
+}
+
+.texts .name{
+    font-size: 15;
+}
+
+.name .song-name{
+    font-weight: bolder;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.texts .artist{
+    padding: 2px;
+    font-size: 12;
+    color: #8d8dbe;
+}
+
+.artist .artist-name{
+    white-space: normal;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.progress-area{
+    height: 25px;
+    width: 100%;
+}
+
+.progress-area .progress-bar{
+    margin-left: 22px;
+    margin-top: 10px;
+    height: 4px;
+    width: 80%;
+    cursor: pointer;
+    border-radius: 50px;
+    background: #8d8dbe;
+}
+
+.progress-bar .main-prog{
+    width: 60%;
+    position: relative;
+    border-radius: inherit;
+    height: inherit;
+    background:#B7B7EB;
+}
+
+.main-prog::before{
+    content:'';
+    position: absolute;
+    height: 12px;
+    width: 12px;
+    border-radius: inherit;
+    background-color: #B7B7EB;
+    top: 50%;
+    right: -5px;
+    transform: translateY(-50%);
+    opacity: 0;
+    transition: opacity 0.2s ease;
+}
+
+.progress-bar:hover .main-prog::before{
+    opacity: 1;
+}
+
+.progress-area .timer{
+    display: flex;
+    justify-content: space-between;
+    padding-left: 22px;
+    padding-right: 22px;
+}
+
+.timer span{
+    margin-top: 5;
+    font-size: 12;
+    color:#8d8dbe
+}
+
+.player .controls {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #B7B7EB
+}
+
+
+.controls #play-pause{
+    font-size: 50;
+    cursor: pointer;
+}
+
+.controls #next, #prev{
+    font-size: 30;
+}
+
+
+.channels {
+    color : white;
+    margin-top: 5;
+    margin-bottom: 5;
+    margin-left: 5;
+    margin-right: 5;
+    cursor: pointer;
+    padding: 5;
+    border-radius: 30px;
+    /*border: solid #242638;*/
+
+}
+
+.channelshover:hover{
+    background-color: rgb(183,183,235);
+}
+
+.activetextchannel{
+    background-color: rgb(36,38,56);
+}
+
+#mute{
+    display: none;
+    position: fixed;
+    bottom: 5%;
+    cursor: pointer;
+}
+
+#unmute{
+    display: none;
+    position: fixed;
+    bottom: 5%;
+    cursor: pointer;
+}
+#endcall{
+    display: none;
+    position: fixed;
+    bottom: 5%;
+    margin-left: 150px;
+    cursor: pointer;
+}
+
+#textchannels{
+    color : white;
+    margin-top: 10;
+    margin-bottom: 10;
+    margin-left: 5;
+    cursor: pointer;
+}
+#textchannels:hover{
+    color: black;
+}
+
+#voicechannels{
+    color : white;
+    margin-top: 10;
+    margin-bottom: 10;
+    margin-left: 5;
+    cursor: pointer;
+}
+
+#jitsi-meet-conf-container{
+    display: none;
+}
+
+#messages{
+    color: white;
+    width: 100%;
+    list-style: none;
+    padding: 20;
+    word-wrap: break-word;
+}
+
+.sender{
+    color: rgb(183,183,235);
+
+}
+
+.sent-by-me{
+    text-align: right;
+}
+
+#textbox-message{
+    width:100%;
+    position: absolute;
+    bottom:0;
+    height: 30px;
+    background-color: rgb(183,183,235);
+    border-radius: 10px;
+    outline: none;
+    padding-left: 5px;
+    /*padding: 5px;*/
+}
+#type-message{
+    position:absolute;
+    height:40px;
+    width: 80%;
+    margin-left: 10%;
+    bottom: 5%;
+}
+
+.messages-div{
+    height: 80%;
+    width: 100%;
+    overflow: scroll;
+    margin-top: 10px;
+    overflow-x: hidden;
+    /*position: relative;*/
+}
+
+.message-and-button{
+    height: 100%;
+    width: 78%;
+    position: relative;
+}
+
+.bx-caret-down-circle{
+    color: white;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+}
+.bx-caret-down-circle:hover{
+    cursor: pointer;
+}
+
+#scrollButton{
+    display: none;
+    position: absolute;
+    bottom: 13%;
+    right: 0;
+}
+
+
+/* width */
+.messages-div::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+.messages-div::-webkit-scrollbar-track {
+  background: rgb(36,38,56);
+}
+
+/* Handle */
+.messages-div::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 10px;
+}
+
+/* Handle on hover */
+.messages-div::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+.main_block .friends_block{
+    border-radius: 30px;
+    background-color: #2C2E58;
+    border-top: 10px solid #242638;
+    border-bottom: 10px solid #242638;
+    border-left: 10px solid #242638;
+    border-right: 10px solid #242638;
+    height: 100%;
+    /*width: 100%;*/
+    width: 230px;
+
+}
+
+.newmessage{
+    display: none;
+}
+
+.server_data{
+    display: none;
+}
+
+.sidebarListSelected{
+    background: #B7B7EB;
+    color:#2C2E58 !important
+}
+/*#jitsi-meet-conf-container{
+    border-radius: 30px;
+    background-color: white;
+    border-top: 10px solid #242638;
+    border-bottom: 10px solid #242638;
+    border-left: 10px solid #242638;
+    border-right: 10px solid #242638;
+    height: 100%;
+}*/
+
+
