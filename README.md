@@ -4,7 +4,7 @@ Discord-Alternate is an open source place where people can create their servers 
 The first thing to do is to clone the repository:
 
 ```sh
-$ git https://github.com/m-shreyansh/CP-Solution-Discussion.git
+$ git https://github.com/m-shreyansh/Discord-Alternate.git
 ```
 
 Create a virtual environment to install dependencies in and activate it:
